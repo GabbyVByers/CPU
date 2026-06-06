@@ -70,6 +70,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)Libraries\SFML\include;$(SolutionDir)Libraries\DearImgui;$(SolutionDir)Libraries\Imgui-SFML;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\SFML\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)Libraries\SFML\include;$(SolutionDir)Libraries\DearImgui;$(SolutionDir)Libraries\Imgui-SFML;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Libraries\SFML\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,10 +119,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
@@ -129,17 +140,40 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-audio.lib;sfml-graphics.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Libraries\DearImgui\imgui.cpp" />
+    <ClCompile Include="Libraries\DearImgui\imgui_demo.cpp" />
+    <ClCompile Include="Libraries\DearImgui\imgui_draw.cpp" />
+    <ClCompile Include="Libraries\DearImgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Libraries\DearImgui\imgui_tables.cpp" />
+    <ClCompile Include="Libraries\DearImgui\imgui_widgets.cpp" />
+    <ClCompile Include="Libraries\Imgui-SFML\imgui-SFML.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Libraries\DearImgui\imconfig.h" />
+    <ClInclude Include="Libraries\DearImgui\imgui.h" />
+    <ClInclude Include="Libraries\DearImgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Libraries\DearImgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Libraries\DearImgui\imgui_internal.h" />
+    <ClInclude Include="Libraries\DearImgui\imstb_rectpack.h" />
+    <ClInclude Include="Libraries\DearImgui\imstb_textedit.h" />
+    <ClInclude Include="Libraries\DearImgui\imstb_truetype.h" />
+    <ClInclude Include="Libraries\Imgui-SFML\imconfig-SFML.h" />
+    <ClInclude Include="Libraries\Imgui-SFML\imgui-SFML.h" />
+    <ClInclude Include="Libraries\Imgui-SFML\imgui-SFML_export.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
